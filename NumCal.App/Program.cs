@@ -20,13 +20,22 @@ using Spectre.Console;
 //
 // var res = EquationSolver.SolveEquation(input);
 
-var (L , U) = LUExtraction.Extract(Matrix<double>.Build.DenseOfArray(new double[,]
-{
-    { 48, -24, 0, 12, 4 },
-    { -24, 24, 12, 12, 4 },
-    { 0, 6, 20, 2, -2 },
-    { -6, 6, 2, 16, -2 }
-}));
+// var (L , U) = LUExtraction.Extract(Matrix<double>.Build.DenseOfArray(new double[,]
+// {
+//     { 48, -24, 0, 12, 4 },
+//     { -24, 24, 12, 12, 4 },
+//     { 0, 6, 20, 2, -2 },
+//     { -6, 6, 2, 16, -2 }
+// }));
+//
+// AnsiConsole.MarkupLine("{0}", L.ToMatrixString().EscapeMarkup());
+// AnsiConsole.MarkupLine("{0}", U.ToMatrixString().EscapeMarkup());
 
-AnsiConsole.MarkupLine("{0}", L.ToMatrixString().EscapeMarkup());
-AnsiConsole.MarkupLine("{0}", U.ToMatrixString().EscapeMarkup());
+NewtonInterpolation.Solve(new()
+{
+    { 20, 1.20103 },
+    { 21, 1.32222 },
+    { 22, 1.34242 },
+    { 23, 1.36173 },
+    { 24, 1.38021 }
+});
