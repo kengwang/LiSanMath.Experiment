@@ -14,7 +14,7 @@ public static class NewtonMethod
         {
             var dx = -f(x) / df(x);
             x += dx;
-            AnsiConsole.MarkupLine("迭代的 x{0} = [bold blue]{1}[/]", i,x);
+            AnsiConsole.MarkupLine("迭代的 x{0} = [bold blue]{1}[/] , delta = [yellow]{2}[/]", i,x, Math.Abs(dx));
             if (Math.Abs(dx) < tol)
             {
                 return x;

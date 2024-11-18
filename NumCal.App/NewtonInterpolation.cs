@@ -40,6 +40,6 @@ public class NewtonInterpolation
             table.AddRow(row.ToArray());
         }
         AnsiConsole.Write(table);
-        return new();
+        return quotient.Select(l => l[0]).ToList();
     }
 }

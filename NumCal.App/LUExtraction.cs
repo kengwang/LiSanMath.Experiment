@@ -10,8 +10,6 @@ public static class LUExtraction
     {
         var L = Matrix<double>.Build.DenseIdentity(A.RowCount, A.ColumnCount);
         var U = Matrix<double>.Build.Dense(A.RowCount, A.ColumnCount);
-        Console.WriteLine(L.ToMatrixString());
-        Console.WriteLine(U.ToMatrixString());
         var mat = A.Clone();
         for (var i = 0; i < A.RowCount; i++)
         {

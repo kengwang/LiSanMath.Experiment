@@ -1,9 +1,11 @@
 ﻿using MathNet.Numerics.LinearAlgebra;
+using Spectre.Console;
 
 namespace NumCal.App;
 
-public static class EquationSolver
+public static class PivotingGaussianEliminator
 {
+    
     public static double[] SolveEquation(Matrix<double> matrix)
     {
         if (matrix.RowCount != matrix.ColumnCount - 1)
@@ -14,12 +16,12 @@ public static class EquationSolver
         // 解为上三角矩阵
         for (var i = 0; i < matrix.RowCount - 1; i++)
         {
-            Console.WriteLine(matrix.ToMatrixString());
             matrix = matrix.SwapMajorRowBelowWithColumn(i);
-            Console.WriteLine(matrix.ToMatrixString());
             for (var j = i + 1; j < matrix.RowCount; j++)
             {
+                AnsiConsole.MarkupLine("消元第 [blue]{0}[/] 行", j);
                 var factor = matrix[j, i] / matrix[i, i];
+                AnsiConsole.MarkupLine("第 [blue]{0}[/] 行减去第 [blue]{1}[/] 行的 [green]{2}[/] 倍", j, i, factor);
                 matrix.SetRow(j, matrix.Row(j) - factor * matrix.Row(i));
                 Console.WriteLine(matrix.ToMatrixString());
             }
@@ -37,7 +39,6 @@ public static class EquationSolver
             result[i] = (matrix[i, matrix.ColumnCount - 1] - sum) / matrix[i, i];
         }
         
-        result.ToList().ForEach(Console.WriteLine);
         return result;
     }
 
@@ -54,7 +55,9 @@ public static class EquationSolver
         
         if (maxRow != column)
         {
+            AnsiConsole.MarkupLine("交换第 [blue]{0}[/] 行和第 [blue]{1}[/] 行", column, maxRow);
             matrix = SwapRows(matrix, column, maxRow);
+            AnsiConsole.WriteLine(matrix.ToMatrixString());
         }
         
         return matrix;
